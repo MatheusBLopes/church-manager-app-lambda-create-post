@@ -139,3 +139,4 @@ node_modules
 package-lock.json
 .env
 *.zip
+.tool-versions

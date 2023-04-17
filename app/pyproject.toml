@@ -6,7 +6,7 @@ authors = ["MatheusBLopes <matheusblopes10@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "3.9.16"
 aws-lambda-powertools = "^2.13.0"
 pydantic = "^1.10.7"
 
