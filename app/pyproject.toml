@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-django = "^4.2"
+aws-lambda-powertools = "^2.13.0"
 
 
 [build-system]
