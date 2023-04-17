@@ -12,6 +12,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
 
     permissions:
