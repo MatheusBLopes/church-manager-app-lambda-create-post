@@ -29,11 +29,9 @@ aws lambda delete-alias \
 
 echo zip lambda package
 rm --force lambda.zip
-
 chmod -R 777 ./app
-
 zip -r lambda.zip app
-zipinfo lambda.zip
+
 
 
 echo zip layer package
@@ -48,7 +46,6 @@ pip install \
 chmod -R 777 ./basic-layer
 cd basic-layer
 zip -r basic-layer.zip .
-zipinfo basic-layer.zip
 
 echo aws lambda publish-layer-version of basic-layer
 aws lambda publish-layer-version \
@@ -72,12 +69,18 @@ VERSION=$(aws lambda publish-version \
     --output text)
 echo published version: $VERSION
 
+echo get latest layer version
 LATEST_LAYER_VERSION=$(aws lambda list-layer-versions \
     --layer-name basic_layer \
     --query 'max_by(LayerVersions, &Version).Version')
 
 echo $LATEST_LAYER_VERSION
 
+echo update lambda $PROJECT_NAME layer version to $LATEST_LAYER_VERSION
+aws lambda update-function-configuration \
+    --function-name $PROJECT_NAME \
+    --layers arn:aws:lambda:$AWS_REGION:$ACCOUNT_ID:layer:my-layer:$LATEST_LAYER_VERSION
+ 
 echo aws lambda create-alias $1
 aws lambda create-alias \
     --function-name $PROJECT_NAME \
