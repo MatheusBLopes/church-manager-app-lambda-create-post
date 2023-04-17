@@ -30,18 +30,29 @@ aws lambda delete-alias \
 echo zip lambda package
 rm --force lambda.zip
 
-pip install \
-    --platform linux_x86_64 \
-    --target=./app \
-    --implementation cp \
-    --python-version 3.9 \
-    --only-binary=:all: \
-    --requirement ./app/requirements.txt
-
 chmod -R 777 ./app
 
 zip -r lambda.zip app
 zipinfo lambda.zip
+
+
+echo zip layer package
+mkdir basic-layer
+pip install \
+    --platform linux_x86_64 \
+    --target=./basic-layer \
+    --implementation cp \
+    --python-version 3.9 \
+    --only-binary=:all: \
+    --requirement ./app/requirements.txt
+zip -r basic-layer.zip basic-layer
+
+echo aws lambda publish-layer-version of basic-layer
+aws lambda publish-layer-version \
+    --layer-name basic_layer \
+    --description "Updated version" \
+    --zip-file fileb://basic-layer.zip
+
 
 echo aws lambda update-function-code $PROJECT_NAME
 aws lambda update-function-code \

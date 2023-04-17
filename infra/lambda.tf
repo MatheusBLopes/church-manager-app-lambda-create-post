@@ -1,24 +1,41 @@
-data "archive_file" "zip" {
+data "archive_file" "layer_zip" {
+  type        = "zip"
+  source_file = "../app/lambda_function.py"
+  output_path = "../basic_layer.zip"
+}
+
+resource "aws_lambda_layer_version" "basic_layer" {
+  layer_name       = "basic_layer"
+  filename         = data.archive_file.layer_zip.output_path
+  source_code_hash = filebase64sha256(data.archive_file.layer_zip.output_path)
+
+  compatible_runtimes = [
+    "python3.9"
+  ]
+}
+
+data "archive_file" "lambda_zip" {
   type        = "zip"
   source_file = "../app/lambda_function.py"
   output_path = "../lambda.zip"
 }
 
 resource "aws_lambda_function" "lambda" {
-  filename         = data.archive_file.zip.output_path
-  source_code_hash = filebase64sha256(data.archive_file.zip.output_path)
+  filename         = data.archive_file.lambda_zip.output_path
+  source_code_hash = filebase64sha256(data.archive_file.lambda_zip.output_path)
 
   function_name = var.project_name
   role          = aws_iam_role.lambda_role.arn
   handler       = "app.lambda_function.lambda_handler"
   runtime       = "python3.9"
   timeout       = 10
-  # publish       = true
+  layers        = ["${aws_lambda_layer_version.basic_layer.arn}"]
 
   tags = {
     "permit-github-action" = true
   }
 }
+
 
 resource "aws_lambda_alias" "alias_dev" {
   name             = "dev"
