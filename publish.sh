@@ -35,7 +35,7 @@ zip lambda.zip ./*
 echo aws lambda update-function-code $PROJECT_NAME
 aws lambda update-function-code \
     --function-name $PROJECT_NAME \
-    --zip-file fileb://hello.zip \
+    --zip-file fileb://lambda.zip \
     --region $AWS_REGION
 
 echo aws lambda update-function-code $PROJECT_NAME
