@@ -32,8 +32,7 @@ cd app/
 rm --force lambda.zip
 pip install -r requirements.txt -t .
 cd ..
-rm --force lambda.zip
-zip lambda.zip app
+zip -r lambda.zip ./
 
 echo aws lambda update-function-code $PROJECT_NAME
 aws lambda update-function-code \
