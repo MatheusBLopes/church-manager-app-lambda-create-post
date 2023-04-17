@@ -1,4 +1,4 @@
-from src.schemas.input_event_schema import InputTest
+from app.src.schemas.input_event_schema import InputTest
 from aws_lambda_powertools.utilities.parser import parse
 
 def lambda_handler(event, context):
