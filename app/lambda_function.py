@@ -1,5 +1,5 @@
 from app.src.schemas.input_event_schema import InputTest
-from app.aws_lambda_powertools.utilities.parser import parse
+from aws_lambda_powertools.utilities.parser import parse
 
 def lambda_handler(event, context):
     parsed_payload = parse(event=event, model=InputTest)
