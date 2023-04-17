@@ -50,8 +50,7 @@ pip install \
     --only-binary=:all: \
     --requirement ./app/requirements.txt
 chmod -R 777 ./$LAMBDA_LAYER_NAME
-cd $LAMBDA_LAYER_NAME
-zip -r $LAMBDA_LAYER_NAME.zip ./$LAMBDA_LAYER_NAME/*
+zip -r $LAMBDA_LAYER_NAME.zip $LAMBDA_LAYER_NAME
 
 echo aws lambda publish-layer-version of $LAMBDA_LAYER_NAME
 aws lambda publish-layer-version \
