@@ -36,7 +36,7 @@ pip install \
     --implementation cp \
     --python-version 3.9 \
     --only-binary=:all: \
-    --requirements ./app/requirements.txt
+    --requirement ./app/requirements.txt
 
 zip -r lambda.zip app
 zipinfo lambda.zip
