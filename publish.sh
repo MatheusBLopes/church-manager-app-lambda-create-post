@@ -7,6 +7,8 @@
 # AWS variables
 AWS_REGION=sa-east-1
 
+PROJECT_NAME=LambdaCreateTask
+
 # the directory containing the script file
 dir="$(cd "$(dirname "$0")"; pwd)"
 cd "$dir"
