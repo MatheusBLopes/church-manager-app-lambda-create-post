@@ -72,6 +72,12 @@ VERSION=$(aws lambda publish-version \
     --output text)
 echo published version: $VERSION
 
+LATEST_LAYER_VERSION=$(aws lambda list-layer-versions \
+    --layer-name basic_layer \
+    --query 'max_by(LayerVersions, &Version).Version')
+
+echo $LATEST_LAYER_VERSION
+
 echo aws lambda create-alias $1
 aws lambda create-alias \
     --function-name $PROJECT_NAME \
