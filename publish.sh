@@ -38,8 +38,7 @@ pip install \
     --only-binary=:all: \
     --requirement ./app/requirements.txt
 
-chmod 644 $(find /app/ -type f)
-chmod 755 $(find /app/ -type d)
+chmod -R 777 ./app
 
 zip -r lambda.zip app
 zipinfo lambda.zip
