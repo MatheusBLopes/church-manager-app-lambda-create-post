@@ -9,6 +9,8 @@ AWS_REGION=sa-east-1
 
 PROJECT_NAME=LambdaCreateTask
 
+LAMBDA_LAYER_NAME=basic_layer
+
 # the directory containing the script file
 dir="$(cd "$(dirname "$0")"; pwd)"
 cd "$dir"
@@ -47,9 +49,9 @@ chmod -R 777 ./basic-layer
 cd basic-layer
 zip -r basic-layer.zip .
 
-echo aws lambda publish-layer-version of basic-layer
+echo aws lambda publish-layer-version of $LAMBDA_LAYER_NAME
 aws lambda publish-layer-version \
-    --layer-name basic_layer \
+    --layer-name $LAMBDA_LAYER_NAME \
     --description "Updated version" \
     --zip-file fileb://basic-layer.zip
 
@@ -71,7 +73,7 @@ echo published version: $VERSION
 
 echo get latest layer version
 LATEST_LAYER_VERSION=$(aws lambda list-layer-versions \
-    --layer-name basic_layer \
+    --layer-name $LAMBDA_LAYER_NAME \
     --query 'max_by(LayerVersions, &Version).Version')
 
 echo $LATEST_LAYER_VERSION
@@ -79,7 +81,7 @@ echo $LATEST_LAYER_VERSION
 echo update lambda $PROJECT_NAME layer version to $LATEST_LAYER_VERSION
 aws lambda update-function-configuration \
     --function-name $PROJECT_NAME \
-    --layers arn:aws:lambda:$AWS_REGION:$ACCOUNT_ID:layer:my-layer:$LATEST_LAYER_VERSION
+    --layers arn:aws:lambda:$AWS_REGION:$ACCOUNT_ID:layer:$LAMBDA_LAYER_NAME:$LATEST_LAYER_VERSION
  
 echo aws lambda create-alias $1
 aws lambda create-alias \
