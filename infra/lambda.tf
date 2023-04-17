@@ -15,7 +15,7 @@ resource "aws_lambda_function" "lambda" {
   timeout       = 10
   # publish       = true
 
-  tag = {
+  tags = {
     "permit-github-action" = true
   }
 }

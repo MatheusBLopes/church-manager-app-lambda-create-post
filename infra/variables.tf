@@ -1,5 +1,5 @@
 variable "project_name" {
-  default = "lambda-terraform-github-actions"
+  default = "LambdaCreateTask"
 }
 
 variable "region" {
