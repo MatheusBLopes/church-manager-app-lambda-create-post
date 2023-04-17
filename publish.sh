@@ -29,7 +29,15 @@ aws lambda delete-alias \
 
 echo zip lambda package
 rm --force lambda.zip
-pip install -r ./app/requirements.txt -t ./app
+
+pip install \
+    --platform linux_x86_64 \
+    --target=./app \
+    --implementation cp \
+    --python-version 3.9 \
+    --only-binary=:all: \
+    --requirements ./app/requirements.txt
+
 zip -r lambda.zip app
 zipinfo lambda.zip
 
