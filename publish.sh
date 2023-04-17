@@ -9,7 +9,7 @@ AWS_REGION=sa-east-1
 
 PROJECT_NAME=LambdaCreateTask
 
-LAMBDA_LAYER_NAME=basic_layer
+LAMBDA_LAYER_NAME=python
 
 # the directory containing the script file
 dir="$(cd "$(dirname "$0")"; pwd)"
@@ -41,23 +41,23 @@ aws lambda update-function-code \
     --region $AWS_REGION
 
 echo zip layer package
-mkdir basic-layer
+mkdir $LAMBDA_LAYER_NAME
 pip install \
     --platform linux_x86_64 \
-    --target=./basic-layer \
+    --target=./$LAMBDA_LAYER_NAME \
     --implementation cp \
     --python-version 3.9 \
     --only-binary=:all: \
     --requirement ./app/requirements.txt
-chmod -R 777 ./basic-layer
-cd basic-layer
-zip -r basic-layer.zip *
+chmod -R 777 ./$LAMBDA_LAYER_NAME
+cd $LAMBDA_LAYER_NAME
+zip -r $LAMBDA_LAYER_NAME.zip ./$LAMBDA_LAYER_NAME/*
 
 echo aws lambda publish-layer-version of $LAMBDA_LAYER_NAME
 aws lambda publish-layer-version \
     --layer-name $LAMBDA_LAYER_NAME \
     --description "Updated version" \
-    --zip-file fileb://basic-layer.zip
+    --zip-file fileb://$LAMBDA_LAYER_NAME.zip
 
 echo aws lambda update-function-code $PROJECT_NAME
 VERSION=$(aws lambda publish-version \
