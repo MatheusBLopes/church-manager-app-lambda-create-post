@@ -45,7 +45,7 @@ pip install \
     --python-version 3.9 \
     --only-binary=:all: \
     --requirement ./app/requirements.txt
-zip -r basic-layer.zip basic-layer
+zip -r basic-layer.zip ./basic-layer/*
 
 echo aws lambda publish-layer-version of basic-layer
 aws lambda publish-layer-version \
