@@ -1,11 +1,11 @@
 data "archive_file" "layer_zip" {
   type        = "zip"
   source_file = "../app/lambda_function.py"
-  output_path = "../basic_layer.zip"
+  output_path = "../python.zip"
 }
 
 resource "aws_lambda_layer_version" "basic_layer" {
-  layer_name       = "basic_layer"
+  layer_name       = "python"
   filename         = data.archive_file.layer_zip.output_path
   source_code_hash = filebase64sha256(data.archive_file.layer_zip.output_path)
 
