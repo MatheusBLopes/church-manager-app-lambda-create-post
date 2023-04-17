@@ -34,7 +34,11 @@ rm --force lambda.zip
 chmod -R 777 ./app
 zip -r lambda.zip app
 
-
+echo aws lambda update-function-code $PROJECT_NAME
+aws lambda update-function-code \
+    --function-name $PROJECT_NAME \
+    --zip-file fileb://lambda.zip \
+    --region $AWS_REGION
 
 echo zip layer package
 mkdir basic-layer
@@ -54,13 +58,6 @@ aws lambda publish-layer-version \
     --layer-name $LAMBDA_LAYER_NAME \
     --description "Updated version" \
     --zip-file fileb://basic-layer.zip
-
-
-echo aws lambda update-function-code $PROJECT_NAME
-aws lambda update-function-code \
-    --function-name $PROJECT_NAME \
-    --zip-file fileb://lambda.zip \
-    --region $AWS_REGION
 
 echo aws lambda update-function-code $PROJECT_NAME
 VERSION=$(aws lambda publish-version \
