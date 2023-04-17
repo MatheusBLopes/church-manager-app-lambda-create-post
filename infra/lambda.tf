@@ -14,6 +14,10 @@ resource "aws_lambda_function" "lambda" {
   runtime       = "python3.9"
   timeout       = 10
   # publish       = true
+
+  tag = {
+    "permit-github-action" = true
+  }
 }
 
 resource "aws_lambda_alias" "alias_dev" {
