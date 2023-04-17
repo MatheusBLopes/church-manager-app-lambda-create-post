@@ -1,5 +1,4 @@
+from aws_lambda_powertools.utilities.parser import BaseModel
 
-class InputTest():
-
-    def __init__(self, message):
-        self.message = message
+class InputTest(BaseModel):
+    message: str
