@@ -23,5 +23,5 @@ resource "aws_iam_role" "lambda_role" {
 resource "aws_iam_policy_attachment" "lambda" {
   name       = "lambda-policy-attachment"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
-  roles      = [aws_iam_role.lambda.name]
+  roles      = [aws_iam_role.lambda_role.name]
 }

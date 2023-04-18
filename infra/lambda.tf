@@ -31,6 +31,11 @@ resource "aws_lambda_function" "lambda" {
   timeout       = 500
   layers        = ["${aws_lambda_layer_version.basic_layer.arn}"]
 
+  vpc_config {
+    subnet_ids         = ["subnet-06142ac6726d42667", "subnet-0136774f343ba95e4", "subnet-00394379445320e9f"]
+    security_group_ids = ["sg-0524fc9f3dc12c825"]
+  }
+
   tags = {
     "permit-github-action" = true
   }
