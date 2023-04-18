@@ -1,11 +1,14 @@
 import pymysql
-from aws_lambda_powertools.utilities import parameters
+from aws_lambda_powertools import Logger
+
+logger = Logger()
 
 class DatabaseConnectionSingleton:
     __connection_instance = None
 
     def __init__(self):
         if DatabaseConnectionSingleton.__connection_instance is None:
+            logger.info("Conectando ao banco de dados")
             try:
                 connection = pymysql.connect(
                     host="terraform-20230418224750246200000001.cnjstxqpfga2.sa-east-1.rds.amazonaws.com",
@@ -16,6 +19,7 @@ class DatabaseConnectionSingleton:
                     cursorclass=pymysql.cursors.DictCursor
                 )
             except Exception as error:
+                logger.info(f"Erro ao conectar no banco de dados {error}")
                 raise error
 
             DatabaseConnectionSingleton.__connection_instance = connection
