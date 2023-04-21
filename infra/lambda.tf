@@ -32,8 +32,8 @@ resource "aws_lambda_function" "lambda" {
   layers        = ["${aws_lambda_layer_version.basic_layer.arn}"]
 
   vpc_config {
-    subnet_ids         = ["subnet-06142ac6726d42667", "subnet-0136774f343ba95e4", "subnet-00394379445320e9f"]
-    security_group_ids = ["sg-0524fc9f3dc12c825"]
+    subnet_ids         = ["subnet-00819f6f2acbd706b", "subnet-097dec38784fb4970", "subnet-0920089f8494f9cb4"]
+    security_group_ids = ["sg-0e214b2c3b82e2480"]
   }
 
   tags = {
