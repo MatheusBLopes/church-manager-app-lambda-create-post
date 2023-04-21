@@ -33,7 +33,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@master
       with:
-        role-to-assume: arn:aws:iam::880587150218:oidc-provider/token.actions.githubusercontent.com
+        role-to-assume: arn:aws:iam::880587150218:oidc-provider
         aws-region: us-east-1
 
         
