@@ -5,7 +5,7 @@
 #
 
 # AWS variables
-AWS_REGION=sa-east-1
+AWS_REGION=us-east-1
 
 PROJECT_NAME=LambdaCreateTask
 

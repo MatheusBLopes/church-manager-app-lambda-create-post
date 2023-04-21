@@ -11,7 +11,7 @@ class DatabaseConnectionSingleton:
             logger.info("Conectando ao banco de dados")
             try:
                 connection = pymysql.connect(
-                    host="terraform-20230418224750246200000001.cnjstxqpfga2.sa-east-1.rds.amazonaws.com",
+                    host="life-manager.cb0yj0kskzwr.us-east-1.rds.amazonaws.com",
                     user="dbuser",
                     password="dbpassword",
                     database="LifeManagerDb",

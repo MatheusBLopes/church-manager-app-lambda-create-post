@@ -5,10 +5,10 @@ import pymysql
 def lambda_handler(event, context):
     parsed_payload = parse(event=event, model=InputTest)
     connection = pymysql.connect(
-                    host="terraform-20230418224750246200000001.cnjstxqpfga2.sa-east-1.rds.amazonaws.com",
-                    user="dbuser",
+                    host="life-manager.cb0yj0kskzwr.us-east-1.rds.amazonaws.com",
+                    user="lifemanager",
                     password="dbpassword",
-                    database="LifeManagerDb",
+                    database="lifemanger",
                     port=5432,
                     cursorclass=pymysql.cursors.DictCursor
                 )
