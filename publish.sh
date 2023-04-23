@@ -9,7 +9,7 @@ AWS_REGION=us-east-1
 
 PROJECT_NAME=LambdaCreateTask
 
-LAMBDA_LAYER_NAME=basic_layer
+LAMBDA_LAYER_NAME=python
 
 # the directory containing the script file
 dir="$(cd "$(dirname "$0")"; pwd)"
