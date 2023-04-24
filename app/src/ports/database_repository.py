@@ -12,10 +12,10 @@ class DatabaseConnectionSingleton:
             try:
                 connection = pymysql.connect(
                     host="life-manager.cb0yj0kskzwr.us-east-1.rds.amazonaws.com",
-                    user="dbuser",
+                    user="lifemanager",
                     password="dbpassword",
-                    database="LifeManagerDb",
-                    port=5432,
+                    database="lifemanger",
+                    port=3306,
                     cursorclass=pymysql.cursors.DictCursor
                 )
             except Exception as error:
