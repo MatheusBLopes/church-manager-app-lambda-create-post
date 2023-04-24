@@ -9,7 +9,7 @@ def lambda_handler(event, context):
                     user="lifemanager",
                     password="dbpassword",
                     database="lifemanger",
-                    port=5432,
+                    port=3306,
                     cursorclass=pymysql.cursors.DictCursor
                 )
     connection.close()

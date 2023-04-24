@@ -28,12 +28,12 @@ resource "aws_lambda_function" "lambda" {
   role          = aws_iam_role.lambda_role.arn
   handler       = "app.lambda_function.lambda_handler"
   runtime       = "python3.9"
-  timeout       = 500
+  timeout       = 10
   layers        = ["${aws_lambda_layer_version.basic_layer.arn}"]
 
   vpc_config {
-    subnet_ids         = ["subnet-00819f6f2acbd706b", "subnet-097dec38784fb4970", "subnet-0920089f8494f9cb4"]
-    security_group_ids = ["sg-0e214b2c3b82e2480"]
+    subnet_ids         = ["subnet-08ed7a42971da5c2c", "subnet-0b04f58e0ffb32e61"]
+    security_group_ids = ["sg-065e6f363127ab667"]
   }
 
   tags = {
