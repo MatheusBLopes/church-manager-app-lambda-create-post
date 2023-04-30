@@ -16,11 +16,11 @@ class ThumbnailAndPostCreator:
 
 
         self.color_to_use = self.colors_palette.get(self.day_of_the_week)
-        self.background_image = Image.open(os.path.abspath("./src/bg.png"))
+        self.background_image = Image.open(os.path.abspath("src/bg.png"))
 
-        self.montserrat_arabic_font = os.path.abspath('./src/fonts/montserrat-arabic-500.otf')
-        self.libre_baskerville_font = os.path.abspath('./src/fonts/libre-baskerville-regular.ttf')
-        self.montserrat_medium_font = os.path.abspath('./src/fonts/montserrat-medium-500.ttf')
+        self.montserrat_arabic_font = os.path.abspath('src/fonts/montserrat-arabic-500.otf')
+        self.libre_baskerville_font = os.path.abspath('src/fonts/libre-baskerville-regular.ttf')
+        self.montserrat_medium_font = os.path.abspath('src/fonts/montserrat-medium-500.ttf')
 
         self.draw = None
         self.image = None
@@ -116,7 +116,7 @@ class ThumbnailAndPostCreator:
         self.draw_centered_white_text(self.theme, 50, 680, self.montserrat_medium_font)
         self.draw_centered_white_text(self.preacher, 50, 750, self.montserrat_medium_font)
 
-        self.image.save(os.path.abspath('./src/created-images/post.png'), 'PNG')
+        self.image.save(os.path.abspath('src/created-images/post.png'), 'PNG')
 
         return True
 
@@ -158,6 +158,6 @@ class ThumbnailAndPostCreator:
         self.draw_centered_white_text(self.theme, 50, 500, self.montserrat_medium_font)
         self.draw_centered_white_text(self.preacher, 50, 580, self.montserrat_medium_font)
 
-        self.image.save(os.path.abspath('./src/created-images/thumbnail.png'), 'PNG')
+        self.image.save(os.path.abspath('src/created-images/thumbnail.png'), 'PNG')
 
         return True
