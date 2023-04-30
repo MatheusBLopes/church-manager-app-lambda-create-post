@@ -42,12 +42,8 @@ aws lambda update-function-code \
 
 echo zip layer package
 mkdir python
-pip3 install \
-    --platform linux_x86_64 \
+pip install \
     --target=./python \
-    --implementation cp \
-    --python-version 3.9 \
-    --only-binary=:none: \
     --requirement ./app/requirements.txt
 chmod -R 777 ./python
 zip -r python.zip python
