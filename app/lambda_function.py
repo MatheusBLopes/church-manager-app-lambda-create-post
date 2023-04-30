@@ -20,8 +20,7 @@ def lambda_handler(event, context):
     if post:
 
         # Upload the file to S3
-        breakpoint()
-        with open(os.path.abspath('src/created-images/post.png'), 'rb') as file:
+        with open(os.path.abspath('app/src/created-images/post.png'), 'rb') as file:
             # generate a unique key for the file
             key = f"files/{datetime.now().strftime('%Y%m%d-%H%M%S')}-post"
             
