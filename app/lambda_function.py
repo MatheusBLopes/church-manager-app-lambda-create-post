@@ -17,7 +17,7 @@ def lambda_handler(event, context):
 
     if post:
 
-        file_path = './src/created-images/post.png'
+        file_path = './app/src/created-images/post.png'
 
         # Upload the file to S3
         with open(file_path, 'rb') as file:

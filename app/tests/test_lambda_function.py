@@ -8,5 +8,5 @@ def test_lambda():
             "date": "29 ABR | à 9:00",
             "preacher": "Pregador: Matheus B. Lopes",
             "theme": "Tema: Hebraico Antigo"
-        }
+        }, context={}
     )
