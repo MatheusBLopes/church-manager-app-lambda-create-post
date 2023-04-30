@@ -10,7 +10,7 @@ from app.src.schemas.input_event_schema import CreatePostInputSchema
 s3 = boto3.client('s3')
 
 
-def lambda_handler(event):
+def lambda_handler(event, context):
     parsed_payload = parse(event=event, model=CreatePostInputSchema)
 
     post = ThumbnailAndPostCreator(parsed_payload.day_of_the_week, parsed_payload.date, parsed_payload.preacher, parsed_payload.theme)
