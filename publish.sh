@@ -40,6 +40,10 @@ aws lambda update-function-code \
     --zip-file fileb://lambda.zip \
     --region $AWS_REGION
 
+echo installing libfreetype6-dev
+apt-get install libfreetype6-dev
+
+
 echo zip layer package
 mkdir python
 pip install \
