@@ -42,6 +42,7 @@ aws lambda update-function-code \
 
 echo zip layer package
 mkdir python
+python3 -m pip install --upgrade pip
 python3 -m pip install \
     --platform linux_x86_64 \
     --target=./python \
