@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta
 
 import boto3
@@ -14,14 +15,12 @@ def lambda_handler(event, context):
     parsed_payload = parse(event=event, model=CreatePostInputSchema)
 
     post = ThumbnailAndPostCreator(parsed_payload.day_of_the_week, parsed_payload.date, parsed_payload.preacher, parsed_payload.theme)
+    post.create_post()
 
     if post:
 
-        file_path = './app/src/created-images/post.png'
-
         # Upload the file to S3
-        with open(file_path, 'rb') as file:
-            breakpoint()
+        with open(os.path.abspath('./src/created-images/post.png'), 'rb') as file:
             # generate a unique key for the file
             key = f"files/{datetime.now().strftime('%Y%m%d-%H%M%S')}-post"
             
