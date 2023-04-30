@@ -4,8 +4,8 @@ data "archive_file" "layer_zip" {
   output_path = "../python.zip"
 }
 
-resource "aws_lambda_layer_version" "basic_layer" {
-  layer_name       = "python"
+resource "aws_lambda_layer_version" "second_basic_layer" {
+  layer_name       = "second_python"
   filename         = data.archive_file.layer_zip.output_path
   source_code_hash = filebase64sha256(data.archive_file.layer_zip.output_path)
 
@@ -20,7 +20,7 @@ data "archive_file" "lambda_zip" {
   output_path = "../lambda.zip"
 }
 
-resource "aws_lambda_function" "lambda" {
+resource "aws_lambda_function" "lambda_create_post" {
   filename         = data.archive_file.lambda_zip.output_path
   source_code_hash = filebase64sha256(data.archive_file.lambda_zip.output_path)
 
@@ -29,12 +29,12 @@ resource "aws_lambda_function" "lambda" {
   handler       = "app.lambda_function.lambda_handler"
   runtime       = "python3.9"
   timeout       = 10
-  layers        = ["${aws_lambda_layer_version.basic_layer.arn}"]
+  layers        = ["${aws_lambda_layer_version.second_basic_layer.arn}"]
 
-  vpc_config {
-    subnet_ids         = ["subnet-0f518eaf6eb3b1b1b", "subnet-0062bbf4840f9d6f9"]
-    security_group_ids = ["sg-0c5f06ecac2a4522b"]
-  }
+  # vpc_config {
+  #   subnet_ids         = ["subnet-00745232e396969a1", "subnet-01082d68bed15f9bb"]
+  #   security_group_ids = ["sg-0d5eaa6cb27c249ab"]
+  # }
 
   tags = {
     "permit-github-action" = true
@@ -45,18 +45,18 @@ resource "aws_lambda_function" "lambda" {
 resource "aws_lambda_alias" "alias_dev" {
   name             = "dev"
   description      = "dev"
-  function_name    = aws_lambda_function.lambda.arn
+  function_name    = aws_lambda_function.lambda_create_post.arn
   function_version = "$LATEST"
 }
 
 resource "aws_lambda_alias" "alias_prod" {
   name             = "prod"
   description      = "prod"
-  function_name    = aws_lambda_function.lambda.arn
+  function_name    = aws_lambda_function.lambda_create_post.arn
   function_version = "$LATEST"
 }
 
 
 resource "aws_cloudwatch_log_group" "convert_log_group" {
-  name = "/aws/lambda/${aws_lambda_function.lambda.function_name}"
+  name = "/aws/lambda/${aws_lambda_function.lambda_create_post.function_name}"
 }

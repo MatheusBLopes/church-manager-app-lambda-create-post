@@ -7,9 +7,9 @@
 # AWS variables
 AWS_REGION=us-east-1
 
-PROJECT_NAME=LambdaCreateTask
+PROJECT_NAME=LambdaCreatePost
 
-LAMBDA_LAYER_NAME=python
+LAMBDA_LAYER_NAME=second_python
 
 # the directory containing the script file
 dir="$(cd "$(dirname "$0")"; pwd)"
