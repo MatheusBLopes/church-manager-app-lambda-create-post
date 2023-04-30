@@ -47,7 +47,6 @@ pip3 install \
     --target=./python \
     --implementation cp \
     --python-version 3.9 \
-    --only-binary=:all: \
     --requirement ./app/requirements.txt
 chmod -R 777 ./python
 zip -r python.zip python
