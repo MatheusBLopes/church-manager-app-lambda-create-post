@@ -116,7 +116,7 @@ class ThumbnailAndPostCreator:
         self.draw_centered_white_text(self.theme, 50, 680, self.montserrat_medium_font)
         self.draw_centered_white_text(self.preacher, 50, 750, self.montserrat_medium_font)
 
-        self.image.save(os.path.abspath('tmp/post.png'), 'PNG')
+        self.image.save('/tmp/post.png', 'PNG')
 
         return True
 
@@ -158,6 +158,6 @@ class ThumbnailAndPostCreator:
         self.draw_centered_white_text(self.theme, 50, 500, self.montserrat_medium_font)
         self.draw_centered_white_text(self.preacher, 50, 580, self.montserrat_medium_font)
 
-        self.image.save(os.path.abspath('tmp/thumbnail.png'), 'PNG')
+        self.image.save('/tmp/thumbnail.png', 'PNG')
 
         return True
