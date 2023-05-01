@@ -26,7 +26,7 @@ def lambda_handler(event, context):
             
             # upload the file to S3
             try:
-                s3.upload_fileobj(file, 'church-manager-bucket', key)
+                s3.upload_fileobj(file, 'church-manager-s3-bucket', key)
             except ClientError as e:
                 print(e)
                 return {
