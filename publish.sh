@@ -50,6 +50,9 @@ cd freetype-2.11.0
 ./configure --prefix=/home/runner/work/church-manager-app-lambda-create-post/church-manager-app-lambda-create-post/python --disable-shared --enable-static
 make
 make install
+
+chmod +x build_freetype.sh
+./build_freetype.sh
 cd ..
 
 echo zip layer package
