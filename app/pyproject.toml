@@ -13,7 +13,7 @@ pytest = "^7.3.1"
 jmespath = "^1.0.1"
 pymysql = "^1.0.3"
 boto3 = "^1.26.123"
-pillow = "^9.5.0"
+pillow = "^9.2.0"
 
 
 [build-system]
