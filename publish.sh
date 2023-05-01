@@ -40,24 +40,6 @@ aws lambda update-function-code \
     --zip-file fileb://lambda.zip \
     --region $AWS_REGION
 
-echo INSTALLING
-mkdir python
-curl -L https://download.savannah.gnu.org/releases/freetype/freetype-2.11.0.tar.gz -o freetype-2.11.0.tar.gz
-tar xvf freetype-2.11.0.tar.gz
-
-# Configure and build the freetype library
-cd freetype-2.11.0
-./configure --prefix=/home/runner/work/church-manager-app-lambda-create-post/church-manager-app-lambda-create-post/python --disable-shared --enable-static
-make
-make install
-
-
-echo LS LA
-ls -la
-chmod +x build_freetype.sh
-./build_freetype.sh
-cd ..
-
 echo zip layer package
 pip install \
     --target=./python \
@@ -91,7 +73,12 @@ echo update lambda $PROJECT_NAME layer version to $LATEST_LAYER_VERSION
 aws lambda update-function-configuration \
     --function-name $PROJECT_NAME \
     --layers arn:aws:lambda:$AWS_REGION:$ACCOUNT_ID:layer:$LAMBDA_LAYER_NAME:$LATEST_LAYER_VERSION
- 
+
+aws lambda update-function-configuration \
+    --function-name $PROJECT_NAME \
+    --layers arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p38-Pillow:7
+
+
 echo aws lambda create-alias $1
 aws lambda create-alias \
     --function-name $PROJECT_NAME \
