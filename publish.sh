@@ -40,12 +40,19 @@ aws lambda update-function-code \
     --zip-file fileb://lambda.zip \
     --region $AWS_REGION
 
-echo installing libfreetype6-dev
-sudo apt-get install libfreetype6-dev libxft-dev  libjpeg62  libjpeg-devel
+echo INSTALLING
+mkdir python
+curl -L https://download.savannah.gnu.org/releases/freetype/freetype-2.11.0.tar.gz -o freetype-2.11.0.tar.gz
+tar xvf freetype-2.11.0.tar.gz
 
+# Configure and build the freetype library
+cd freetype-2.11.0
+./configure --prefix=../python --disable-shared --enable-static
+make
+make install
+cd ..
 
 echo zip layer package
-mkdir python
 pip install \
     --target=./python \
     --requirement ./app/requirements.txt
