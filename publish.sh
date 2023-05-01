@@ -47,7 +47,7 @@ tar xvf freetype-2.11.0.tar.gz
 
 # Configure and build the freetype library
 cd freetype-2.11.0
-./configure --prefix=/python --disable-shared --enable-static
+./configure --prefix=/home/runner/work/church-manager-app-lambda-create-post/church-manager-app-lambda-create-post/python --disable-shared --enable-static
 make
 make install
 cd ..
