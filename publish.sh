@@ -72,7 +72,7 @@ echo $LATEST_LAYER_VERSION
 echo update lambda $PROJECT_NAME layer version to $LATEST_LAYER_VERSION
 aws lambda update-function-configuration \
     --function-name $PROJECT_NAME \
-    --layers arn:aws:lambda:$AWS_REGION:$ACCOUNT_ID:layer:$LAMBDA_LAYER_NAME:$LATEST_LAYER_VERSION, arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p38-Pillow:7
+    --layers arn:aws:lambda:$AWS_REGION:$ACCOUNT_ID:layer:$LAMBDA_LAYER_NAME:$LATEST_LAYER_VERSION arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p38-Pillow:7
 
 
 echo aws lambda create-alias $1
