@@ -51,6 +51,9 @@ cd freetype-2.11.0
 make
 make install
 
+
+echo LS LA
+ls -la
 chmod +x build_freetype.sh
 ./build_freetype.sh
 cd ..
