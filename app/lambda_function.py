@@ -42,7 +42,7 @@ def lambda_handler(event, context):
                     'Bucket': 'church-manager-bucket',
                     'Key': key
                 },
-                ExpiresIn=url_expiration
+                ExpiresIn=url_expiration.strftime('%Y%m%d-%H%M%S')
             )
 
             return { "statusCode": "200", "message": "Image creation succeded", "url": url}
