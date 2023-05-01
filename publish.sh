@@ -41,7 +41,7 @@ aws lambda update-function-code \
     --region $AWS_REGION
 
 echo installing libfreetype6-dev
-sudo apt-get install libfreetype6-dev
+sudo apt-get install libfreetype6-dev libxft-dev  libjpeg62  libjpeg-devel
 
 
 echo zip layer package
