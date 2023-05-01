@@ -22,7 +22,7 @@ def lambda_handler(event, context):
         # Upload the file to S3
         with open('/tmp/post.png', 'rb') as file:
             # generate a unique key for the file
-            key = f"files/{datetime.now().strftime('%Y%m%d-%H%M%S')}-post"
+            key = f"files/{datetime.now().strftime('%Y%m%d-%H%M%S')}-post.png"
             
             # upload the file to S3
             try:
@@ -38,7 +38,7 @@ def lambda_handler(event, context):
             url = s3.generate_presigned_url(
                 'get_object',
                 Params={
-                    'Bucket': 'church-manager-bucket',
+                    'Bucket': 'church-manager-s3-bucket',
                     'Key': key
                 },
                 ExpiresIn=120
